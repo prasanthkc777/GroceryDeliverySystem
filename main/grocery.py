@@ -2,7 +2,7 @@
 import mysql.connector
 import time
 
-mydb=mysql.connector.connect(host="localhost",user="root",password="your_password",database="grocery")
+mydb=mysql.connector.connect(host="localhost",user="root",password="Gauranitai27#",database="grocery")
 mycursor=mydb.cursor()
 
 def validate_login(username,password,type):
@@ -209,8 +209,7 @@ def order(username,address,wallet):
 
     mycursor.execute("update userdetails SET activecount=%s WHERE username like %s",(str(act),username,))
     mydb.commit()
-    mycursor.execute("insert into orderdetails(username,foodordered,totalcost) values (%s,%s,%s)",(username,st,totalcost,))
-    mydb.commit()
+   
 
     mycursor.execute("select catogary from stock where fooditems like %s",(food,))
     data=mycursor.fetchone()
@@ -517,7 +516,8 @@ if destination=="user":
 
                         mycursor.execute("update userdetails SET activecount=%s WHERE username like %s",(str(act),username,))
                         mydb.commit()
-                        mycursor.execute("insert into orderdetails(ord_id,username,foodordered,totalcost,delivery_status) values (NULL,%s,%s,%s,%s)",(username,st,totalcost,'Not Delivered',))
+                        ds = "Not Delivered"
+                        mycursor.execute("insert into orderdetails(ord_id,username,foodordered,totalcost,delivery_status) values (NULL,%s,%s,%s,%s)",(username,st,totalcost,ds,))
                         mydb.commit()
                         print("Order Success")
                         print('\n'+'Wait for few seconds for setting up delivery')
