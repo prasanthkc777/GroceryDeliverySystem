@@ -2,7 +2,7 @@
 import mysql.connector
 import time
 
-mydb=mysql.connector.connect(host="localhost",user="root",password="Gauranitai27#",database="grocery")
+mydb=mysql.connector.connect(host="localhost",user="root",password="your_password",database="grocery")
 mycursor=mydb.cursor()
 
 def validate_login(username,password,type):
